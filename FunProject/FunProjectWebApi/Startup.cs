@@ -42,6 +42,8 @@ namespace FunProjectWebApi
             }
             );
 
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +67,11 @@ namespace FunProjectWebApi
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
